@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 # console.py
 
-import re
+import re  # Import the regular expressions module
 from models.base_model import BaseModel
 from models import storage
 
 # ...
 
 class HBNBCommand(cmd.Cmd):
-
     # ...
 
     def do_create(self, arg):
@@ -24,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
 
         # Parse command arguments and create a dictionary with key-value pairs
         attributes = {}
-        pattern = re.compile(r'(\w+)="?(.*?)"?$')
+        pattern = re.compile(r'(\w+)="?(.*?)"?$')  # Regular expression pattern to match key-value pairs
         for arg in args[1:]:
             match = pattern.match(arg)
             if match:
@@ -40,6 +39,6 @@ class HBNBCommand(cmd.Cmd):
                 attributes[key] = value
 
         # Create an object using the attributes dictionary
-        obj = HBNBCommand.classes[args[0]](**attributes)
-        obj.save()
-        print(obj.id)
+        obj = HBNBCommand.classes[args[0]](**attributes)  # Create a new instance of the class with the attributes
+        obj.save()  # Call the save method to persist the object
+        print(obj.id)  # Print the id of the newly created object
